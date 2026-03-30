@@ -22,6 +22,22 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Features
+
+PawPal+ includes several intelligent scheduling features to help pet owners manage care tasks effectively.
+
+- **Task Scheduling** – Add tasks for each pet with a scheduled time and priority.
+- **Sorting by Time** – Tasks are automatically sorted chronologically to create a clear daily plan.
+- **Recurring Tasks** – Daily or weekly tasks automatically generate the next occurrence after completion.
+- **Conflict Detection** – The scheduler detects when two tasks occur at the same time and shows a warning instead of crashing the program.
+- **Task Filtering** – Tasks can be filtered by pet name or completion status.
+- **Interactive UI** – The Streamlit interface allows users to easily add pets, create tasks, and generate schedules.
+
+## 📸 Demo
+
+![PawPal Streamlit App](pawpal_app.png)
+![UML Diagram](uml_final.png)
+
 ## Getting started
 
 ### Setup
@@ -53,24 +69,6 @@ PawPal+ includes an automated test suite to verify that the scheduling system be
 ```bash
 python -m pytest
 
-### What the tests cover
-
-The test suite verifies the core behaviors of the PawPal+ scheduling system:
-
-- Task completion – confirms that marking a task complete updates its status correctly.
-- Task management – verifies that tasks can be added to pets and stored properly.
-- Sorting logic – checks that tasks are returned in chronological order when sorted by scheduled time.
-- Recurring tasks – ensures that completing a daily recurring task automatically creates the next occurrence for the following day.
-- Conflict detection – verifies that the scheduler detects when two tasks are scheduled at the same time and returns a warning message.
-
-These tests help confirm that the main scheduling logic works correctly for both normal usage and common edge cases.
-
-### Confidence Level
-
-★★★★☆ (4/5)
-
-The system is reliable for the main scheduling behaviors because sorting, filtering, recurrence handling, and conflict detection are all verified through automated tests. The confidence is not 5/5 because conflict detection currently checks only exact time matches rather than overlapping task durations.
-
 ### Suggested workflow
 
 1. Read the scenario carefully and identify requirements and edge cases.
@@ -80,3 +78,6 @@ The system is reliable for the main scheduling behaviors because sorting, filter
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+
+

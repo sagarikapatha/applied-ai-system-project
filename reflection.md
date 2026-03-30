@@ -65,10 +65,32 @@ I decided that time and priority mattered most because they have the biggest imp
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
 - What kinds of prompts or questions were most helpful?
 
+AI tools were used throughout the project to support different stages of development. I used AI primarily for brainstorming the system design, generating initial class structures, debugging errors, and improving code readability. During the design phase, AI helped suggest how to structure the Owner, Pet, Task, and Scheduler classes and how those classes should interact.
+
+AI was also useful when writing tests and understanding error messages. For example, when debugging Streamlit session state issues or pytest failures, I asked AI to explain why the error occurred and how to correct the logic.
+
+The most helpful prompts were clear and specific questions such as:
+- "Where should this logic be placed in my code?"
+- "Why is this test failing?"
+- "How should I structure this scheduler method?"
+
+These kinds of targeted prompts helped generate useful suggestions without introducing unnecessary complexity.
+
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
 - How did you evaluate or verify what the AI suggested?
+
+AI tools were used throughout the project to support different stages of development. I used AI primarily for brainstorming the system design, generating initial class structures, debugging errors, and improving code readability. During the design phase, AI helped suggest how to structure the Owner, Pet, Task, and Scheduler classes and how those classes should interact.
+
+AI was also useful when writing tests and understanding error messages. For example, when debugging Streamlit session state issues or pytest failures, I asked AI to explain why the error occurred and how to correct the logic.
+
+The most helpful prompts were clear and specific questions such as:
+- "Where should this logic be placed in my code?"
+- "Why is this test failing?"
+- "How should I structure this scheduler method?"
+
+These kinds of targeted prompts helped generate useful suggestions without introducing unnecessary complexity.
 
 ---
 
@@ -79,10 +101,30 @@ I decided that time and priority mattered most because they have the biggest imp
 - What behaviors did you test?
 - Why were these tests important?
 
+he automated tests focused on verifying the core behaviors of the scheduling system. These included:
+
+- Task completion behavior to ensure marking a task complete correctly updates its status.
+- Pet task management to confirm that tasks can be added to pets and stored properly.
+- Sorting logic to verify that tasks are returned in chronological order when sorted by scheduled time.
+- Recurrence handling to ensure that completing a daily recurring task generates the next occurrence.
+- Conflict detection to confirm that the scheduler identifies tasks scheduled at the same time.
+
+These tests were important because they verify that the scheduler behaves correctly under normal usage and that the core logic remains stable as the system evolves.
+
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
 - What edge cases would you test next if you had more time?
+
+he automated tests focused on verifying the core behaviors of the scheduling system. These included:
+
+- Task completion behavior to ensure marking a task complete correctly updates its status.
+- Pet task management to confirm that tasks can be added to pets and stored properly.
+- Sorting logic to verify that tasks are returned in chronological order when sorted by scheduled time.
+- Recurrence handling to ensure that completing a daily recurring task generates the next occurrence.
+- Conflict detection to confirm that the scheduler identifies tasks scheduled at the same time.
+
+These tests were important because they verify that the scheduler behaves correctly under normal usage and that the core logic remains stable as the system evolves.
 
 ---
 
@@ -92,10 +134,16 @@ I decided that time and priority mattered most because they have the biggest imp
 
 - What part of this project are you most satisfied with?
 
+The part of the project I am most satisfied with is the overall system architecture. Separating the logic into Owner, Pet, Task, and Scheduler classes made the code easier to understand and maintain. This structure also allowed the scheduling logic to remain independent from the Streamlit UI.
+
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
 
+If I had another iteration, I would improve the scheduling algorithm by supporting overlapping task durations and more advanced prioritization. I would also refine the Streamlit interface to include editing tasks, deleting tasks, and visualizing schedules in a more interactive way.
+
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+
+One important takeaway from this project is that AI tools are powerful assistants, but the developer still needs to guide the design and verify the results. Acting as the lead architect ensures that AI-generated suggestions align with the intended system structure and project goals. This approach helps maintain clean design, reliable functionality, and meaningful use of AI support.
