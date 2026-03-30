@@ -22,6 +22,16 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Getting started
+
+### Setup
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 ## Smarter Scheduling
 
 PawPal+ includes several algorithmic improvements that make pet care planning more intelligent and organized.
@@ -34,15 +44,32 @@ The scheduler can:
 
 These features were tested using the CLI demo script in `main.py`, which verifies sorting, filtering, recurrence handling, and conflict detection.
 
-## Getting started
+## Testing PawPal+
 
-### Setup
+PawPal+ includes an automated test suite to verify that the scheduling system behaves correctly.
+
+### Run the tests
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
+python -m pytest
+
+### What the tests cover
+
+The test suite verifies the core behaviors of the PawPal+ scheduling system:
+
+- Task completion – confirms that marking a task complete updates its status correctly.
+- Task management – verifies that tasks can be added to pets and stored properly.
+- Sorting logic – checks that tasks are returned in chronological order when sorted by scheduled time.
+- Recurring tasks – ensures that completing a daily recurring task automatically creates the next occurrence for the following day.
+- Conflict detection – verifies that the scheduler detects when two tasks are scheduled at the same time and returns a warning message.
+
+These tests help confirm that the main scheduling logic works correctly for both normal usage and common edge cases.
+
+### Confidence Level
+
+★★★★☆ (4/5)
+
+The system is reliable for the main scheduling behaviors because sorting, filtering, recurrence handling, and conflict detection are all verified through automated tests. The confidence is not 5/5 because conflict detection currently checks only exact time matches rather than overlapping task durations.
 
 ### Suggested workflow
 
