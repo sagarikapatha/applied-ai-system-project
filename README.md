@@ -268,5 +268,6 @@ This project demonstrates my ability to design and build applied AI systems that
 
 It reflects my approach as an AI engineer: combining structured system design with responsible AI practices, validating outputs, and prioritizing clarity and trust over black-box behavior.
 
-
+## 🎥 Video Walkthrough
+https://www.loom.com/share/aef6784330a44f8ca2eaa80e21dfcd73
 
