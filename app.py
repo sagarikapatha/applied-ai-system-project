@@ -1,5 +1,6 @@
 import streamlit as st
 from pawpal_system import Owner, Pet, Task, Scheduler
+from ai_helper import explain_schedule, calculate_reliability_score, log_ai_check, suggest_action
 
 st.set_page_config(page_title="PawPal+", page_icon="🐾", layout="centered")
 
@@ -86,17 +87,24 @@ if pets:
         st.session_state.task_counter = 1
 
     if st.button("Add Task"):
-        new_task = Task(
-            task_id=f"t{st.session_state.task_counter}",
-            title=task_title,
-            task_type=task_type,
-            scheduled_time=scheduled_time,
-            priority=priority_map[priority_label],
-            frequency=frequency,
-        )
-        st.session_state.task_counter += 1
-        selected_pet.add_task(new_task)
-        st.success(f"Added task '{task_title}' for {selected_pet.name}")
+        if not task_title.strip():
+            st.warning("Please enter a task title.")
+        elif not task_type.strip():
+            st.warning("Please enter a task type.")
+        elif priority_label == "Select Priority":
+            st.warning("Please select a priority.")
+        else:
+            new_task = Task(
+                task_id=f"t{st.session_state.task_counter}",
+                title=task_title.strip(),
+                task_type=task_type.strip(),
+                scheduled_time=scheduled_time,
+                priority=priority_map[priority_label],
+                frequency=frequency,
+            )
+            st.session_state.task_counter += 1
+            selected_pet.add_task(new_task)
+            st.success(f"Added task '{task_title}' for {selected_pet.name}")
 else:
     st.info("Add a pet first before creating tasks.")
 
@@ -132,7 +140,32 @@ if st.button("Generate Schedule"):
 
     conflicts = scheduler.detect_conflicts()
     if conflicts:
-        for warning in conflicts:
-            st.warning(warning)
+        for t1, t2 in conflicts:
+            pet1 = next((p.name or p.pet_id for p in scheduler.pets if t1 in p.tasks), "Unknown")
+            pet2 = next((p.name or p.pet_id for p in scheduler.pets if t2 in p.tasks), "Unknown")
+
+            st.warning(
+                f"Conflict: {t1.title} ({pet1}) and {t2.title} ({pet2}) "
+                f"at {t1.scheduled_time.strftime('%Y-%m-%d %H:%M')}"
+            )
     else:
         st.success("No task conflicts detected.")
+    
+    st.divider()
+    st.subheader("AI Schedule Review")
+
+    explanation = explain_schedule(sorted_tasks, conflicts)
+    score, reasons = calculate_reliability_score(sorted_tasks, conflicts)
+
+    st.write(explanation)
+    st.metric("Reliability Score", f"{score}/5")
+
+    for reason in reasons:
+        st.write(f"- {reason}")
+        
+    # Agentic recommendation
+    st.subheader("AI Recommendation")
+    action = suggest_action(conflicts, score)
+    st.write(action)
+
+    log_ai_check(sorted_tasks, conflicts, score)    
