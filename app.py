@@ -140,14 +140,8 @@ if st.button("Generate Schedule"):
 
     conflicts = scheduler.detect_conflicts()
     if conflicts:
-        for t1, t2 in conflicts:
-            pet1 = next((p.name or p.pet_id for p in scheduler.pets if t1 in p.tasks), "Unknown")
-            pet2 = next((p.name or p.pet_id for p in scheduler.pets if t2 in p.tasks), "Unknown")
-
-            st.warning(
-                f"Conflict: {t1.title} ({pet1}) and {t2.title} ({pet2}) "
-                f"at {t1.scheduled_time.strftime('%Y-%m-%d %H:%M')}"
-            )
+        for warning in conflicts:
+            st.warning(warning)
     else:
         st.success("No task conflicts detected.")
     
